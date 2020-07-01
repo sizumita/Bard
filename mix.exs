@@ -24,7 +24,7 @@ defmodule Bard.MixProject do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
-      {:alchemy, git: "https://github.com/dongmaster/alchemy.git"}
+      {:alchemy, git: "https://github.com/sizumita/alchemy.git"}
       # {:google_api_storage, "~> 0.19.0"},
       # {:goth, "~> 1.2.0"}
     ]

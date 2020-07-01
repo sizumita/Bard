@@ -1,6 +1,10 @@
 defmodule Bard do
   use Application
   alias Alchemy.Client
+  use Alchemy.Events
+
+  Events.on_message(:inspect)
+  def inspect(message), do: IO.inspect message.content
 
   defmodule CoreCommands do
     use Alchemy.Cogs
@@ -16,6 +20,7 @@ defmodule Bard do
     IO.puts Application.fetch_env!(:bard, :prefix)
     use CoreCommands
     use VoiceClientController.Commands
+    # use Music.Commands
 
     run
   end
