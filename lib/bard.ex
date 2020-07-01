@@ -1,18 +1,20 @@
 defmodule Bard do
-  @moduledoc """
-  Documentation for `Bard`.
-  """
+  use Application
 
-  @doc """
-  Hello world.
+  defmodule CoreCommands do
+    use Alchemy.Cogs
 
-  ## Examples
+    Cogs.def help do
+      Cogs.say "help"
+    end
+  end
 
-      iex> Bard.hello()
-      :world
+  def start(_type, _args) do
+    run = Client.start(Application.fetch_env!(:bard, :token))
+    Alchemy.Cogs.set_prefix(Application.fetch_env!(:bard, :prefix))
+    use CoreCommands
+    # use Music.Commands
 
-  """
-  def hello do
-    :world
+    run
   end
 end
