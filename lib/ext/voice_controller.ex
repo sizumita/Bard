@@ -47,7 +47,7 @@ defmodule VoiceClientController do
             {:ok, state} ->
               Voice.join(guild.id, state.channel_id)
               # TODO: ここで課金の確認
-              Cogs.say "起動成功しました。"
+              Cogs.say "接続しました。"
               {:ok, pid} = Queue.start_link()
               :global.register_name("V"<>guild.id, pid)
             _ -> Cogs.say "ボイスチャンネルに入った状態で呼び出す必要があります。"
@@ -56,5 +56,18 @@ defmodule VoiceClientController do
       end
     end
 
+    Cogs.def leave do
+      case Cogs.guild() do
+        {:ok, guild} ->
+          case Voice.is_playing(guild.id) do
+            {:ok, true} ->
+              Voice.stop_audio(guild.id)
+            _ -> :ignore
+          end
+          Voice.leave(guild.id)
+          Cogs.say "退出しました。"
+        _ -> Cogs.say "サーバー内で実行してください。"
+      end
+    end
   end
 end
