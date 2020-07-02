@@ -18,10 +18,6 @@ defmodule Queue do
     GenServer.call(pid, :fetch)
   end
 
-  def current(pid) do
-    GenServer.call(pid, :current)
-  end
-
   def handle_call(:length, _from, queue) do
     {:reply, :queue.len(queue), queue}
   end

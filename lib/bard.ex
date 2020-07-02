@@ -18,6 +18,7 @@ defmodule Bard do
     run = Client.start(Application.fetch_env!(:bard, :token))
     Alchemy.Cogs.set_prefix(Application.fetch_env!(:bard, :prefix))
     IO.puts Application.fetch_env!(:bard, :prefix)
+    ChannelMap.start_link(:channels)
     use CoreCommands
     use VoiceClientController.Commands
     # use Music.Commands
