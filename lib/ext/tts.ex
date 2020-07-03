@@ -24,7 +24,5 @@ defmodule TTS do
         body: request
       )
       Base.decode64!(response.audioContent)
-      # {:ok, stream} = Base.decode64!(response.audioContent) |> StringIO.open()
-      # stream |> IO.binstream(:line)
   end
 end
