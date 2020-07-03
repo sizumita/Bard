@@ -25,3 +25,4 @@ bard-*.tar
 # Ignore config files
 /config/config.exs
 Bard-Bot-fac171e23ab8.json
+.idea/

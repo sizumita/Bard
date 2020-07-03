@@ -11,8 +11,10 @@ defmodule Synthesis do
           case ChannelMap.fetch(:channels, channel.guild_id) do
             {:ok, value} ->
               if channel.id == value.text_id do
+                data = Mongo.find_one(:mongo, "users", %{id: message.author.id})
+                IO.inspect data
                 {:ok, guild} = Client.get_guild(channel.guild_id)
-                p = TTS.get(message.author.username <> "、" <> message.content)
+                p = TTS.get(message.author.username <> "、" <> message.content, data)
                 Queue.add(:global.whereis_name("V"<>guild.id), message.id)
                 :ok = VoiceClientController.wait_for_front(guild, message.id)
                 :ok = Voice.play_iodata(guild.id, p)
