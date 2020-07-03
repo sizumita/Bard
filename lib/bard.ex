@@ -5,9 +5,6 @@ defmodule Bard do
   defmodule CoreCommands do
     use Alchemy.Cogs
 
-    Cogs.def help do
-      Cogs.say "help"
-    end
   end
 
   def start(_type, _args) do
