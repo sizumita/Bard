@@ -21,6 +21,7 @@ erl_crash.dump
 
 # Ignore package tarball (built via "mix hex.build").
 bard-*.tar
-
+.elixir_ls/
 # Ignore config files
 /config/config.exs
+Bard-Bot-fac171e23ab8.json

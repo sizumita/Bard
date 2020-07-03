@@ -32,17 +32,16 @@ defmodule VoiceClientController do
     # :ok = VoiceClientController.wait_for_front(guild, message.id)　をして
     # 処理をする
     pid = :global.whereis_name("V"<>guild.id)
-    :ok = Process.sleep(200)
+    :ok = Process.sleep(400)
     case Voice.is_playing(guild.id) do
       {:ok, true} ->
-        IO.puts "waiting...."
         Voice.wait_for_end(guild.id)
       _ -> :ignore
     end
-    IO.puts "play..."
-    [head | tail] = Queue.list(pid)
+    [head | _] = Queue.list(pid)
     if head == message_id do
       IO.puts head
+      Process.sleep(200)
       Queue.fetch(pid)
       :ok
     else

@@ -1,10 +1,6 @@
 defmodule Bard do
   use Application
   alias Alchemy.Client
-  use Alchemy.Events
-
-  Events.on_message(:inspect)
-  def inspect(message), do: IO.inspect message.content
 
   defmodule CoreCommands do
     use Alchemy.Cogs
@@ -21,7 +17,7 @@ defmodule Bard do
     ChannelMap.start_link(:channels)
     use CoreCommands
     use VoiceClientController.Commands
-    # use Music.Commands
+    use Synthesis
 
     run
   end
